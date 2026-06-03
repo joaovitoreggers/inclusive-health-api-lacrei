@@ -5,7 +5,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 
 env = environ.Env(
-    DEBUG=(bool, False),  # default seguro: produção é False por padrão
+    DEBUG=(bool, False),  
 )
 environ.Env.read_env(BASE_DIR/'.env')
 
@@ -55,7 +55,7 @@ ROOT_URLCONF = 'core.urls'
 WSGI_APPLICATION = 'core.wsgi.application'
 
 
-DATABASES = env.db('DATABASE_URL')
+DATABASES = {'default': env.db('DATABASE_URL')}
 
 
 # Password validation

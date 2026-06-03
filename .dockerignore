@@ -1,0 +1,59 @@
+# ===========================================================================
+# .dockerignore — inclusive-health-api-lacrei
+# Mantém o contexto de build pequeno e impede que artefatos/segredos
+# sejam copiados para dentro da imagem pelo "COPY . ." do Dockerfile.
+# ===========================================================================
+
+# Controle de versão
+.git
+.gitignore
+
+# Ambientes virtuais (o venv é construído DENTRO da imagem, no builder)
+.venv
+venv
+env
+ENV
+
+# Segredos: o .env é injetado em runtime via compose, nunca embutido na imagem
+.env
+.env.*
+!.env.example
+
+# Caches e bytecode Python
+__pycache__
+*.py[cod]
+*$py.class
+*.egg-info
+.cache
+
+# Testes, cobertura e linters
+.pytest_cache
+.ruff_cache
+.mypy_cache
+.coverage
+.coverage.*
+coverage.xml
+htmlcov
+.tox
+.nox
+
+# Artefatos do Django (não fazem sentido na imagem)
+db.sqlite3
+db.sqlite3-journal
+staticfiles
+static_root
+media
+*.log
+
+# Docker e infra (não precisam ser copiados para dentro da imagem)
+Dockerfile
+docker-compose.yml
+docker-compose.override.yml
+postgres_data
+pgdata
+
+# IDEs e SO
+.vscode
+.idea
+.DS_Store
+Thumbs.db
