@@ -1,0 +1,93 @@
+# ===========================================================================
+# .gitignore — inclusive-health-api-lacrei
+# Stack: Python 3.14 · Django + DRF · Poetry · PostgreSQL · Docker
+# ===========================================================================
+
+# === Segredos e variáveis de ambiente ======================================
+# O .env REAL nunca vai pro repositório. O .env.example (sem valores
+# sensíveis) DEVE ser versionado e está liberado explicitamente abaixo.
+.env
+.env.*
+!.env.example
+
+# === Python =================================================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+sdist/
+wheels/
+*.egg-info/
+*.egg
+MANIFEST
+
+# === Ambientes virtuais =====================================================
+.venv/
+venv/
+env/
+ENV/
+
+# === Poetry =================================================================
+# IMPORTANTE: pyproject.toml E poetry.lock DEVEM ser versionados
+# (o lock é o que garante builds reproduzíveis no CI e no Docker).
+# Não há artefato do Poetry para ignorar aqui além de caches.
+.cache/
+
+# === Django =================================================================
+*.log
+db.sqlite3
+db.sqlite3-journal
+# Saída do collectstatic (gerada; não versionar)
+/staticfiles/
+/static_root/
+# Uploads de usuários em ambiente local
+/media/
+#
+# ATENÇÃO: NÃO ignore a pasta migrations/ — as migrations DEVEM ir
+# para o repositório. Elas são o histórico do schema do banco.
+
+# === Testes, cobertura e linters ============================================
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+.pytest_cache/
+.tox/
+.nox/
+.ruff_cache/
+.mypy_cache/
+.dmypy.json
+.hypothesis/
+
+# === Docker =================================================================
+# Dados locais do Postgres, caso você use bind mount no docker-compose
+/postgres_data/
+/pgdata/
+# Override de compose para ajustes só da sua máquina
+docker-compose.override.yml
+
+# === IDEs e editores ========================================================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+*.sublime-project
+*.sublime-workspace
+
+# === Sistema operacional ====================================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
