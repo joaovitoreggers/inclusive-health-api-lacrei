@@ -1,3 +1,4 @@
+import uuid
 from django.db import models
 
 class Professional(models.Model):
@@ -13,6 +14,13 @@ class Professional(models.Model):
         DENTISTRY = 'DENTISTRY', 'Dentistry'
         OTHER = 'OTHER', 'Other'
 
+    
+    id = models.UUIDField(
+        primary_key=True,
+        default=uuid.uuid4,
+        editable=False
+    )
+    
     social_name = models.CharField(
         verbose_name='Nome Social', 
         max_length=255
