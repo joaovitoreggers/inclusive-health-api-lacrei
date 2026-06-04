@@ -25,6 +25,9 @@ class Consultation(models.Model):
         verbose_name = 'consulta'
         verbose_name_plural = 'consultas'
         ordering = ['-date'] 
+        constraints = [
+            models.UniqueConstraint(fields=['professional', 'date'], name='unique_professional_date')
+        ]
  
     def __str__(self):
         return f'Consulta de {self.professional} em {self.date:%d/%m/%Y %H:%M}'
