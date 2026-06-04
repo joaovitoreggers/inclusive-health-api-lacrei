@@ -8,20 +8,20 @@ class ProfessionalSerializer(serializers.ModelSerializer):
         model = Professional
 
         fields = [
-            "id",
-            "social_name",
-            "profession",
-            "address",
-            "email",
-            "phone",
-            "created_at",
-            "updated_at",
+            'id',
+            'social_name',
+            'profession',
+            'address',
+            'email',
+            'phone',
+            'created_at',
+            'updated_at',
         ]
-        read_only_fields = ["id", "created_at", "updated_at"]
+        read_only_fields = ['id', 'created_at', 'updated_at']
 
 
     def validate_phone(self, value):
-        digits = "".join(c for c in value if c.isdigit())
+        digits = ''.join(c for c in value if c.isdigit())
         if len(digits) < 10:
-            raise serializers.ValidationError("Telefone inválido.")
+            raise serializers.ValidationError('Telefone inválido.')
         return digits
