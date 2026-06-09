@@ -1,13 +1,4 @@
-# ===========================================================================
-# docker-compose.yml — inclusive-health-api-lacrei (ambiente LOCAL)
-# Orquestra: app (Django/Gunicorn) + db (PostgreSQL)
-# ===========================================================================
-# Subir:        docker compose up --build
-# Migrations:   docker compose exec app python manage.py migrate
-# Superusuário: docker compose exec app python manage.py createsuperuser
-# Derrubar:     docker compose down        (mantém os dados)
-#               docker compose down -v      (APAGA o volume do banco)
-# ===========================================================================
+
 
 services:
   db:
@@ -18,16 +9,13 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: ${POSTGRES_DB}
     volumes:
-      # Volume NOMEADO: dados do Postgres sobrevivem a reinícios.
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
-      # O app só inicia depois que este check passar (banco aceitando conexões).
       test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
       interval: 5s
       timeout: 5s
       retries: 5
     ports:
-      # Opcional: expõe o banco no host para inspeção (DBeaver, psql, etc.).
       - "5432:5432"
 
   app:
@@ -35,16 +23,13 @@ services:
       context: .
       target: runtime
     restart: unless-stopped
-    # Em DEV sobrescrevemos o CMD da imagem para ter auto-reload.
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
-      - .:/app          # código montado: editar reflete sem rebuild
-      - /app/.venv      # volume anônimo: protege o venv do bind mount acima
+      - .:/app          # so o codigo: o venv esta em /opt/venv, fora daqui
     env_file:
       - .env
     environment:
-      DJANGO_SETTINGS_MODULE: core.settings.local
-      # Host = "db" (nome do serviço), NUNCA localhost, dentro da rede do Compose.
+      DJANGO_SETTINGS_MODULE: core.settings.production
       DATABASE_URL: postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}
     ports:
       - "8000:8000"
