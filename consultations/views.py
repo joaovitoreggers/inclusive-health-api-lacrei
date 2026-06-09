@@ -14,16 +14,16 @@ class ConsultationViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
 
-        queryset = Consultation.objects.select_related("professional")
+        queryset = Consultation.objects.select_related('professional')
 
-        professional_id = self.request.query_params.get("professional")
+        professional_id = self.request.query_params.get('professional')
         if professional_id:
 
             try:
                 uuid.UUID(professional_id)
             except ValueError:
                 raise ValidationError(
-                    {"professional": "ID de profissional inválido."}
+                    {'professional': 'ID de profissional inválido.'}
                 )
             queryset = queryset.filter(professional_id=professional_id)
 

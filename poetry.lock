@@ -37,6 +37,22 @@ argon2 = ["argon2-cffi (>=23.1.0)"]
 bcrypt = ["bcrypt (>=4.1.1)"]
 
 [[package]]
+name = "django-cors-headers"
+version = "4.9.0"
+description = "django-cors-headers is a Django application for handling the server headers required for Cross-Origin Resource Sharing (CORS)."
+optional = false
+python-versions = ">=3.9"
+groups = ["main"]
+files = [
+    {file = "django_cors_headers-4.9.0-py3-none-any.whl", hash = "sha256:15c7f20727f90044dcee2216a9fd7303741a864865f0c3657e28b7056f61b449"},
+    {file = "django_cors_headers-4.9.0.tar.gz", hash = "sha256:fe5d7cb59fdc2c8c646ce84b727ac2bca8912a247e6e68e1fb507372178e59e8"},
+]
+
+[package.dependencies]
+asgiref = ">=3.6"
+django = ">=4.2"
+
+[[package]]
 name = "django-environ"
 version = "0.13.0"
 description = "A package that allows you to utilize 12factor inspired environment variables to configure your Django application."
@@ -221,6 +237,21 @@ files = [
 crypto = ["cryptography (>=3.4.0)"]
 
 [[package]]
+name = "python-json-logger"
+version = "4.1.0"
+description = "JSON Log Formatter for the Python Logging Package"
+optional = false
+python-versions = ">=3.10"
+groups = ["main"]
+files = [
+    {file = "python_json_logger-4.1.0-py3-none-any.whl", hash = "sha256:132994765cf75bf44554be9aa49b06ef2345d23661a96720262716438141b6b2"},
+    {file = "python_json_logger-4.1.0.tar.gz", hash = "sha256:b396b9e3ed782b09ff9d6e4f1683d46c83ad0d35d2e407c09a9ebbf038f88195"},
+]
+
+[package.extras]
+dev = ["black", "build", "freezegun", "mdx_truly_sane_lists", "mike", "mkdocs", "mkdocs-awesome-pages-plugin", "mkdocs-gen-files", "mkdocs-literate-nav", "mkdocs-material (>=8.5)", "mkdocstrings[python]", "msgspec ; implementation_name != \"pypy\"", "mypy", "orjson ; implementation_name != \"pypy\"", "pylint", "pytest", "tzdata", "validate-pyproject[all]"]
+
+[[package]]
 name = "sqlparse"
 version = "0.5.5"
 description = "A non-validating SQL parser."
@@ -252,4 +283,4 @@ files = [
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.14,<4"
-content-hash = "7e17fd07d530e882b70425b22415cb1e56f24ee11cbf9defebdbd91f694dc768"
+content-hash = "727690cb7f22cafb8cdec2f4b39d0980c95a8d8238fbc04bda695ffe9b42f7ba"
